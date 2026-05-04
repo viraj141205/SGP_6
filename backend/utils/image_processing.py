@@ -5,8 +5,8 @@ import uuid
 from pathlib import Path
 
 
-def preprocess_image_for_model(image_bytes: bytes, target_size: tuple = (300, 300)):
-    """Preprocess image for EfficientNetB3 model input."""
+def preprocess_image_for_model(image_bytes: bytes, target_size: tuple = (128, 128)):
+    """Preprocess image for MobileNetV2 model input."""
     try:
         image = Image.open(io.BytesIO(image_bytes))
         if image.mode != "RGB":
@@ -14,7 +14,8 @@ def preprocess_image_for_model(image_bytes: bytes, target_size: tuple = (300, 30
         image = image.resize(target_size, Image.LANCZOS)
         import numpy as np
         img_array = np.array(image, dtype=np.float32)
-        img_array = img_array / 255.0
+        # MobileNetV2 preprocessing: [0, 255] -> [-1, 1]
+        img_array = (img_array / 127.5) - 1.0
         img_array = np.expand_dims(img_array, axis=0)
         return img_array
     except Exception as e:

@@ -31,7 +31,7 @@ async def detect_disease(
         contents = await file.read()
         validate_image(contents)
 
-        img_array = preprocess_image_for_model(contents, target_size=(300, 300))
+        img_array = preprocess_image_for_model(contents, target_size=(128, 128))
         predictor = get_disease_predictor()
         result = predictor.predict(img_array)
 

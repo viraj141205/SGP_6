@@ -1,0 +1,16 @@
+[
+  "crop_type_encoded",
+  "region_encoded",
+  "season_encoded",
+  "area_hectares",
+  "soil_type_encoded",
+  "soil_ph",
+  "nitrogen",
+  "phosphorus",
+  "potassium",
+  "rainfall",
+  "temperature",
+  "humidity",
+  "npk_ratio",
+  "temp_rainfall_interaction"
+]
