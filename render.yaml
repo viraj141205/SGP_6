@@ -1,3 +1,4 @@
+# Render Blueprint for AgroVision AI
 services:
   # Backend Web Service
   - type: web
@@ -13,8 +14,6 @@ services:
         value: sqlite:///./agrovision.db
       - key: CORS_ORIGINS
         value: "*"
-      - key: PYTHON_VERSION
-        value: 3.11.0
 
   # Frontend Static Site
   - type: static
