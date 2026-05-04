@@ -4,8 +4,6 @@ services:
     name: agrovision-backend
     env: docker
     rootDir: backend
-    dockerContext: backend
-    dockerfilePath: Dockerfile
     plan: free
     envVars:
       - key: SECRET_KEY
@@ -13,7 +11,7 @@ services:
       - key: DATABASE_URL
         value: sqlite:///./agrovision.db
       - key: CORS_ORIGINS
-        fromContext: frontend_url
+        value: "*" # Temporarily allowing all for easier initial setup, can be restricted later
       - key: PYTHON_VERSION
         value: 3.11.0
 
