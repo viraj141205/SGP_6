@@ -1,0 +1,31 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: agrovision-backend
+    env: docker
+    rootDir: backend
+    dockerContext: backend
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./agrovision.db
+      - key: CORS_ORIGINS
+        fromContext: frontend_url
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+  # Frontend Static Site
+  - type: static
+    name: agrovision-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromStack:
+          name: agrovision-backend
+          prop: url
