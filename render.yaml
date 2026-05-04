@@ -16,7 +16,7 @@ services:
         value: "*"
 
   # Frontend Static Site
-  - type: static
+  - type: static_site
     name: agrovision-frontend
     env: node
     rootDir: frontend
